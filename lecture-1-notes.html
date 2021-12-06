@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>lecture-1-notes.md</title>
+	<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+	<style>
+		/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+		/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+		body {
+			font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+			font-size: var(--vscode-markdown-font-size, 14px);
+			padding: 0 26px;
+			line-height: var(--vscode-markdown-line-height, 22px);
+			word-wrap: break-word;
+		}
+
+		#code-csp-warning {
+			position: fixed;
+			top: 0;
+			right: 0;
+			color: white;
+			margin: 16px;
+			text-align: center;
+			font-size: 12px;
+			font-family: sans-serif;
+			background-color: #444444;
+			cursor: pointer;
+			padding: 6px;
+			box-shadow: 1px 1px 1px rgba(0, 0, 0, .25);
+		}
+
+		#code-csp-warning:hover {
+			text-decoration: none;
+			background-color: #007acc;
+			box-shadow: 2px 2px 2px rgba(0, 0, 0, .25);
+		}
+
+		body.scrollBeyondLastLine {
+			margin-bottom: calc(100vh - 22px);
+		}
+
+		body.showEditorSelection .code-line {
+			position: relative;
+		}
+
+		body.showEditorSelection .code-active-line:before,
+		body.showEditorSelection .code-line:hover:before {
+			content: "";
+			display: block;
+			position: absolute;
+			top: 0;
+			left: -12px;
+			height: 100%;
+		}
+
+		body.showEditorSelection li.code-active-line:before,
+		body.showEditorSelection li.code-line:hover:before {
+			left: -30px;
+		}
+
+		.vscode-light.showEditorSelection .code-active-line:before {
+			border-left: 3px solid rgba(0, 0, 0, 0.15);
+		}
+
+		.vscode-light.showEditorSelection .code-line:hover:before {
+			border-left: 3px solid rgba(0, 0, 0, 0.40);
+		}
+
+		.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+			border-left: none;
+		}
+
+		.vscode-dark.showEditorSelection .code-active-line:before {
+			border-left: 3px solid rgba(255, 255, 255, 0.4);
+		}
+
+		.vscode-dark.showEditorSelection .code-line:hover:before {
+			border-left: 3px solid rgba(255, 255, 255, 0.60);
+		}
+
+		.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+			border-left: none;
+		}
+
+		.vscode-high-contrast.showEditorSelection .code-active-line:before {
+			border-left: 3px solid rgba(255, 160, 0, 0.7);
+		}
+
+		.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+			border-left: 3px solid rgba(255, 160, 0, 1);
+		}
+
+		.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+			border-left: none;
+		}
+
+		img {
+			max-width: 100%;
+			max-height: 100%;
+		}
+
+		a {
+			text-decoration: none;
+		}
+
+		a:hover {
+			text-decoration: underline;
+		}
+
+		a:focus,
+		input:focus,
+		select:focus,
+		textarea:focus {
+			outline: 1px solid -webkit-focus-ring-color;
+			outline-offset: -1px;
+		}
+
+		hr {
+			border: 0;
+			height: 2px;
+			border-bottom: 2px solid;
+		}
+
+		h1 {
+			padding-bottom: 0.3em;
+			line-height: 1.2;
+			border-bottom-width: 1px;
+			border-bottom-style: solid;
+		}
+
+		h1,
+		h2,
+		h3 {
+			font-weight: normal;
+		}
+
+		table {
+			border-collapse: collapse;
+		}
+
+		table>thead>tr>th {
+			text-align: left;
+			border-bottom: 1px solid;
+		}
+
+		table>thead>tr>th,
+		table>thead>tr>td,
+		table>tbody>tr>th,
+		table>tbody>tr>td {
+			padding: 5px 10px;
+		}
+
+		table>tbody>tr+tr>td {
+			border-top: 1px solid;
+		}
+
+		blockquote {
+			margin: 0 7px 0 5px;
+			padding: 0 16px 0 10px;
+			border-left-width: 5px;
+			border-left-style: solid;
+		}
+
+		code {
+			font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+			font-size: 1em;
+			line-height: 1.357em;
+		}
+
+		body.wordWrap pre {
+			white-space: pre-wrap;
+		}
+
+		pre:not(.hljs),
+		pre.hljs code>div {
+			padding: 16px;
+			border-radius: 3px;
+			overflow: auto;
+		}
+
+		pre code {
+			color: var(--vscode-editor-foreground);
+			tab-size: 4;
+		}
+
+		/** Theming */
+
+		.vscode-light pre {
+			background-color: rgba(220, 220, 220, 0.4);
+		}
+
+		.vscode-dark pre {
+			background-color: rgba(10, 10, 10, 0.4);
+		}
+
+		.vscode-high-contrast pre {
+			background-color: rgb(0, 0, 0);
+		}
+
+		.vscode-high-contrast h1 {
+			border-color: rgb(0, 0, 0);
+		}
+
+		.vscode-light table>thead>tr>th {
+			border-color: rgba(0, 0, 0, 0.69);
+		}
+
+		.vscode-dark table>thead>tr>th {
+			border-color: rgba(255, 255, 255, 0.69);
+		}
+
+		.vscode-light h1,
+		.vscode-light hr,
+		.vscode-light table>tbody>tr+tr>td {
+			border-color: rgba(0, 0, 0, 0.18);
+		}
+
+		.vscode-dark h1,
+		.vscode-dark hr,
+		.vscode-dark table>tbody>tr+tr>td {
+			border-color: rgba(255, 255, 255, 0.18);
+		}
+	</style>
+
+	<style>
+		/*
+
+Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-license.org/
+
+*/
+
+		.hljs {
+			display: block;
+			overflow-x: auto;
+			padding: 0.5em;
+			background: #23241f;
+		}
+
+		.hljs,
+		.hljs-tag,
+		.hljs-subst {
+			color: #f8f8f2;
+		}
+
+		.hljs-strong,
+		.hljs-emphasis {
+			color: #a8a8a2;
+		}
+
+		.hljs-bullet,
+		.hljs-quote,
+		.hljs-number,
+		.hljs-regexp,
+		.hljs-literal,
+		.hljs-link {
+			color: #ae81ff;
+		}
+
+		.hljs-code,
+		.hljs-title,
+		.hljs-section,
+		.hljs-selector-class {
+			color: #a6e22e;
+		}
+
+		.hljs-strong {
+			font-weight: bold;
+		}
+
+		.hljs-emphasis {
+			font-style: italic;
+		}
+
+		.hljs-keyword,
+		.hljs-selector-tag,
+		.hljs-name,
+		.hljs-attr {
+			color: #f92672;
+		}
+
+		.hljs-symbol,
+		.hljs-attribute {
+			color: #66d9ef;
+		}
+
+		.hljs-params,
+		.hljs-class .hljs-title {
+			color: #f8f8f2;
+		}
+
+		.hljs-string,
+		.hljs-type,
+		.hljs-built_in,
+		.hljs-builtin-name,
+		.hljs-selector-id,
+		.hljs-selector-attr,
+		.hljs-selector-pseudo,
+		.hljs-addition,
+		.hljs-variable,
+		.hljs-template-variable {
+			color: #e6db74;
+		}
+
+		.hljs-comment,
+		.hljs-deletion,
+		.hljs-meta {
+			color: #75715e;
+		}
+	</style>
+
+	<style>
+		/*
+ * Markdown PDF CSS
+ */
+
+		body {
+			font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+			padding: 0 12px;
+		}
+
+		pre {
+			background-color: #f8f8f8;
+			border: 1px solid #cccccc;
+			border-radius: 3px;
+			overflow-x: auto;
+			white-space: pre-wrap;
+			overflow-wrap: break-word;
+		}
+
+		pre:not(.hljs) {
+			padding: 23px;
+			line-height: 19px;
+		}
+
+		blockquote {
+			background: rgba(127, 127, 127, 0.1);
+			border-color: rgba(0, 122, 204, 0.5);
+		}
+
+		.emoji {
+			height: 1.4em;
+		}
+
+		code {
+			font-size: 14px;
+			line-height: 19px;
+		}
+
+		/* for inline code */
+		:not(pre):not(.hljs)>code {
+			color: #C9AE75;
+			/* Change the old color so it seems less like an error */
+			font-size: inherit;
+		}
+
+		/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+		.page {
+			page-break-after: always;
+		}
+	</style>
+
+	<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+
+<body>
+	<script>
+		mermaid.initialize({
+			startOnLoad: true,
+			theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+				? 'dark'
+				: 'default'
+		});
+	</script>
+	<h1 id="lectures-1-notes">Lectures 1 Notes</h1>
+	<h2 id="1-file-extensions">1. File Extensions</h2>
+	<p>Every file has two things-</p>
+	<ul>
+		<li>Name</li>
+		<li>Extension (Format)</li>
+	</ul>
+	<p>Every filename follows the format <code>filename.extension</code></p>
+	<p>Example -</p>
+	<ul>
+		<li><code>VID-2021-12-02.mp4</code>, where <code>VID-2021-12-02</code> is the filename and <code>mp4</code> is the extension</li>
+		<li><code>resume.pdf</code>, where <code>resume</code> is the filename and <code>pdf</code> is the extension</li>
+		<li><code>IMG-843203.jpg</code>, where <code>IMG-843203</code> is the filename and <code>jpg</code> is the extension</li>
+	</ul>
+	<h2 id="2-web-technologies">2. Web Technologies</h2>
+	<p>A website is made up of <code>HTML</code>, <code>CSS</code>, &amp; <code>JavaScript</code></p>
+	<ol>
+		<li>HTML - Defines the structure of the page</li>
+		<li>CSS - Defines the styling (look &amp; feel / aesthetics)</li>
+		<li>JS - Defines the behaviour of the website</li>
+	</ol>
+	<h3 id="html-tags">HTML Tags</h3>
+	<p>HTML Tags have an ending element and a closing element, it follows this format- <code>&lt;tag&gt;Content is added in the between&lt;/tag&gt;</code>.</p>
+	<p>Every HTML tag must be closed with it's closing HTML tag</p>
+	<p>Following are some HTML tags-</p>
+	<p>Heading Elements: They are mostly used for heading texts (Title, Subtitle).
+		They range from <code>h1</code> to <code>h6</code></p>
+	<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hello, World!<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>Hello, World!<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>Hello, World!<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Hello, World!<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">h5</span>&gt;</span>Hello, World!<span class="hljs-tag">&lt;/<span class="hljs-name">h5</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">h6</span>&gt;</span>Hello, World!<span class="hljs-tag">&lt;/<span class="hljs-name">h6</span>&gt;</span>
+</div></code></pre>
+	<p>Paragraph Element: It is used when a paragraph is required</p>
+	<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>The quick brown fox jumps over the lazy dog<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+</div></code></pre>
+	<p>Strong Element: It signifies that a certain part of a text has a strong importance, seriousness or urgency. Similar to &quot;bold&quot;.</p>
+	<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Tresspassers will be <span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>prosecuted<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+</div></code></pre>
+	<p>Emphasis Element: This element signals that a certain part of text has stress emphasis. Similar to &quot;italic&quot;.</p>
+	<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>We <span class="hljs-tag">&lt;<span class="hljs-name">em</span>&gt;</span>ran<span class="hljs-tag">&lt;/<span class="hljs-name">em</span>&gt;</span> on seeing the ghost<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+</div></code></pre>
+	<p>Ordered List: A list where the &quot;order&quot; (numbering/rank) matters, the output will have numbers for each item.</p>
+	<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">ol</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Lion<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Tiger<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Cheetah<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Fox<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">ol</span>&gt;</span>
+</div></code></pre>
+	<p>Unordered List: A list where the &quot;order&quot; (numbering/rank) DOESN'T matter, the output will have bullet points for each item.</p>
+	<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Lion<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Tiger<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Cheetah<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Fox<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+</div></code></pre>
+	<p>Image Element: It is used to load an image.</p>
+	<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"cat.jpg"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">img</span>&gt;</span>
+</div></code></pre>
+	<p>Anchor Element: It is used to link (anchor) an HTML page with another HTML page. The Anchor element is the &quot;Hyper&quot; of <code>Hyper Text Markup Language</code>
+		(HTML), meaning you can jump from one page to another just by clicking links.</p>
+	<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"some-page.html"</span>&gt;</span>Click Here<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+</div></code></pre>
+	<h3 id="attributes-of-html-tags">Attributes of HTML Tags</h3>
+	<p>Every HTML tag has various attributes, they are of this format-</p>
+	<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">ram</span> <span class="hljs-attr">age</span>=<span class="hljs-string">"25"</span> <span class="hljs-attr">weight</span>=<span class="hljs-string">"70"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">ram</span>&gt;</span>
+</div></code></pre>
+	<p>Here <code>&lt;ram&gt;&lt;/ram&gt;</code> is a tag, <code>age</code> and <code>weight</code> are its attributes with their respective values.</p>
+	<p>This <code>&lt;ram&gt;&lt;/ram&gt;</code> tag is just an example to explain attributes of HTML Tags, in reality there is no such tag in HTML.</p>
+	<p>You've used the below HTML Tags with attributes-</p>
+	<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"cat.jpg"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">img</span>&gt;</span>
+</div></code></pre>
+	<p>Here the <code>&lt;img&gt;</code> tag has an attribute <code>src</code> with the value <code>cat.jpg</code></p>
+	<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"some-page.html"</span>&gt;</span>Click Here<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+</div></code></pre>
+	<p>Here the <code>&lt;a&gt;</code> tag has an attribute <code>href</code> with the value <code>some-page.html</code></p>
+	<h3 id="nesting-html-tags">Nesting HTML Tags</h3>
+	<p>You can nest (put one inside another) one HTML Tag within another like this-</p>
+	<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">em</span>&gt;</span>India<span class="hljs-tag">&lt;/<span class="hljs-name">em</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span> is my <span class="hljs-tag">&lt;<span class="hljs-name">em</span>&gt;</span>country<span class="hljs-tag">&lt;/<span class="hljs-name">em</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+</div></code></pre>
+	<p>Another example-</p>
+	<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"second.html"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"cat.jpeg"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">img</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+</div></code></pre>
+	<p><strong>Remember</strong> to close the tags properly, the inside one is closed first and then you move outside closing the others on the way.</p>
+
+</body>
+
+</html>

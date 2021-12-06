@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>lecture-2-notes.md</title>
+	<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+	<style>
+		/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+		/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+		body {
+			font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+			font-size: var(--vscode-markdown-font-size, 14px);
+			padding: 0 26px;
+			line-height: var(--vscode-markdown-line-height, 22px);
+			word-wrap: break-word;
+		}
+
+		#code-csp-warning {
+			position: fixed;
+			top: 0;
+			right: 0;
+			color: white;
+			margin: 16px;
+			text-align: center;
+			font-size: 12px;
+			font-family: sans-serif;
+			background-color: #444444;
+			cursor: pointer;
+			padding: 6px;
+			box-shadow: 1px 1px 1px rgba(0, 0, 0, .25);
+		}
+
+		#code-csp-warning:hover {
+			text-decoration: none;
+			background-color: #007acc;
+			box-shadow: 2px 2px 2px rgba(0, 0, 0, .25);
+		}
+
+		body.scrollBeyondLastLine {
+			margin-bottom: calc(100vh - 22px);
+		}
+
+		body.showEditorSelection .code-line {
+			position: relative;
+		}
+
+		body.showEditorSelection .code-active-line:before,
+		body.showEditorSelection .code-line:hover:before {
+			content: "";
+			display: block;
+			position: absolute;
+			top: 0;
+			left: -12px;
+			height: 100%;
+		}
+
+		body.showEditorSelection li.code-active-line:before,
+		body.showEditorSelection li.code-line:hover:before {
+			left: -30px;
+		}
+
+		.vscode-light.showEditorSelection .code-active-line:before {
+			border-left: 3px solid rgba(0, 0, 0, 0.15);
+		}
+
+		.vscode-light.showEditorSelection .code-line:hover:before {
+			border-left: 3px solid rgba(0, 0, 0, 0.40);
+		}
+
+		.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+			border-left: none;
+		}
+
+		.vscode-dark.showEditorSelection .code-active-line:before {
+			border-left: 3px solid rgba(255, 255, 255, 0.4);
+		}
+
+		.vscode-dark.showEditorSelection .code-line:hover:before {
+			border-left: 3px solid rgba(255, 255, 255, 0.60);
+		}
+
+		.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+			border-left: none;
+		}
+
+		.vscode-high-contrast.showEditorSelection .code-active-line:before {
+			border-left: 3px solid rgba(255, 160, 0, 0.7);
+		}
+
+		.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+			border-left: 3px solid rgba(255, 160, 0, 1);
+		}
+
+		.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+			border-left: none;
+		}
+
+		img {
+			max-width: 100%;
+			max-height: 100%;
+		}
+
+		a {
+			text-decoration: none;
+		}
+
+		a:hover {
+			text-decoration: underline;
+		}
+
+		a:focus,
+		input:focus,
+		select:focus,
+		textarea:focus {
+			outline: 1px solid -webkit-focus-ring-color;
+			outline-offset: -1px;
+		}
+
+		hr {
+			border: 0;
+			height: 2px;
+			border-bottom: 2px solid;
+		}
+
+		h1 {
+			padding-bottom: 0.3em;
+			line-height: 1.2;
+			border-bottom-width: 1px;
+			border-bottom-style: solid;
+		}
+
+		h1,
+		h2,
+		h3 {
+			font-weight: normal;
+		}
+
+		table {
+			border-collapse: collapse;
+		}
+
+		table>thead>tr>th {
+			text-align: left;
+			border-bottom: 1px solid;
+		}
+
+		table>thead>tr>th,
+		table>thead>tr>td,
+		table>tbody>tr>th,
+		table>tbody>tr>td {
+			padding: 5px 10px;
+		}
+
+		table>tbody>tr+tr>td {
+			border-top: 1px solid;
+		}
+
+		blockquote {
+			margin: 0 7px 0 5px;
+			padding: 0 16px 0 10px;
+			border-left-width: 5px;
+			border-left-style: solid;
+		}
+
+		code {
+			font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+			font-size: 1em;
+			line-height: 1.357em;
+		}
+
+		body.wordWrap pre {
+			white-space: pre-wrap;
+		}
+
+		pre:not(.hljs),
+		pre.hljs code>div {
+			padding: 16px;
+			border-radius: 3px;
+			overflow: auto;
+		}
+
+		pre code {
+			color: var(--vscode-editor-foreground);
+			tab-size: 4;
+		}
+
+		/** Theming */
+
+		.vscode-light pre {
+			background-color: rgba(220, 220, 220, 0.4);
+		}
+
+		.vscode-dark pre {
+			background-color: rgba(10, 10, 10, 0.4);
+		}
+
+		.vscode-high-contrast pre {
+			background-color: rgb(0, 0, 0);
+		}
+
+		.vscode-high-contrast h1 {
+			border-color: rgb(0, 0, 0);
+		}
+
+		.vscode-light table>thead>tr>th {
+			border-color: rgba(0, 0, 0, 0.69);
+		}
+
+		.vscode-dark table>thead>tr>th {
+			border-color: rgba(255, 255, 255, 0.69);
+		}
+
+		.vscode-light h1,
+		.vscode-light hr,
+		.vscode-light table>tbody>tr+tr>td {
+			border-color: rgba(0, 0, 0, 0.18);
+		}
+
+		.vscode-dark h1,
+		.vscode-dark hr,
+		.vscode-dark table>tbody>tr+tr>td {
+			border-color: rgba(255, 255, 255, 0.18);
+		}
+	</style>
+
+	<style>
+		/*
+
+Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-license.org/
+
+*/
+
+		.hljs {
+			display: block;
+			overflow-x: auto;
+			padding: 0.5em;
+			background: #23241f;
+		}
+
+		.hljs,
+		.hljs-tag,
+		.hljs-subst {
+			color: #f8f8f2;
+		}
+
+		.hljs-strong,
+		.hljs-emphasis {
+			color: #a8a8a2;
+		}
+
+		.hljs-bullet,
+		.hljs-quote,
+		.hljs-number,
+		.hljs-regexp,
+		.hljs-literal,
+		.hljs-link {
+			color: #ae81ff;
+		}
+
+		.hljs-code,
+		.hljs-title,
+		.hljs-section,
+		.hljs-selector-class {
+			color: #a6e22e;
+		}
+
+		.hljs-strong {
+			font-weight: bold;
+		}
+
+		.hljs-emphasis {
+			font-style: italic;
+		}
+
+		.hljs-keyword,
+		.hljs-selector-tag,
+		.hljs-name,
+		.hljs-attr {
+			color: #f92672;
+		}
+
+		.hljs-symbol,
+		.hljs-attribute {
+			color: #66d9ef;
+		}
+
+		.hljs-params,
+		.hljs-class .hljs-title {
+			color: #f8f8f2;
+		}
+
+		.hljs-string,
+		.hljs-type,
+		.hljs-built_in,
+		.hljs-builtin-name,
+		.hljs-selector-id,
+		.hljs-selector-attr,
+		.hljs-selector-pseudo,
+		.hljs-addition,
+		.hljs-variable,
+		.hljs-template-variable {
+			color: #e6db74;
+		}
+
+		.hljs-comment,
+		.hljs-deletion,
+		.hljs-meta {
+			color: #75715e;
+		}
+	</style>
+
+	<style>
+		/*
+ * Markdown PDF CSS
+ */
+
+		body {
+			font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+			padding: 0 12px;
+		}
+
+		pre {
+			background-color: #f8f8f8;
+			border: 1px solid #cccccc;
+			border-radius: 3px;
+			overflow-x: auto;
+			white-space: pre-wrap;
+			overflow-wrap: break-word;
+		}
+
+		pre:not(.hljs) {
+			padding: 23px;
+			line-height: 19px;
+		}
+
+		blockquote {
+			background: rgba(127, 127, 127, 0.1);
+			border-color: rgba(0, 122, 204, 0.5);
+		}
+
+		.emoji {
+			height: 1.4em;
+		}
+
+		code {
+			font-size: 14px;
+			line-height: 19px;
+		}
+
+		/* for inline code */
+		:not(pre):not(.hljs)>code {
+			color: #C9AE75;
+			/* Change the old color so it seems less like an error */
+			font-size: inherit;
+		}
+
+		/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+		.page {
+			page-break-after: always;
+		}
+	</style>
+
+	<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+
+<body>
+	<script>
+		mermaid.initialize({
+			startOnLoad: true,
+			theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+				? 'dark'
+				: 'default'
+		});
+	</script>
+	<h1 id="lecture-2-notes">Lecture 2 Notes</h1>
+	<h2 id="1-forms">1. Forms</h2>
+	<p>A form accepts &quot;input&quot; from users, the input can be-</p>
+	<ul>
+		<li>&quot;text&quot;</li>
+		<li>&quot;email&quot;</li>
+		<li>&quot;password&quot;</li>
+		<li>&quot;tel&quot;</li>
+		<li>&quot;checkbox&quot;</li>
+		<li>&quot;radio&quot;</li>
+		<li>&quot;search&quot;</li>
+		<li>&quot;submit&quot;</li>
+		<li>&quot;button&quot;</li>
+	</ul>
+	<p>And many more...</p>
+	<p>This is the syntax (grammer) of the form element, you specify the &quot;type&quot; of input using the <code>type</code> attribute</p>
+	<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">form</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"John Doe"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">input</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"email"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"example@email.com"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">input</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"password"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Password"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">input</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"tel"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"9088765556"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">input</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"radio"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"gender"</span>&gt;</span>Male<span class="hljs-tag">&lt;/<span class="hljs-name">input</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"radio"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"gender"</span>&gt;</span>Female<span class="hljs-tag">&lt;/<span class="hljs-name">input</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"checkbox"</span>&gt;</span>Running<span class="hljs-tag">&lt;/<span class="hljs-name">input</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"checkbox"</span>&gt;</span>Swimming<span class="hljs-tag">&lt;/<span class="hljs-name">input</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"checkbox"</span>&gt;</span>Dancing<span class="hljs-tag">&lt;/<span class="hljs-name">input</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"submit"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">input</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+</div></code></pre>
+	<h2 id="2-structure-of-an-html-page-website">2. Structure of an HTML page (Website)</h2>
+	<pre class="hljs"><code><div><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>My First Website<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="css">
+      <span class="hljs-selector-tag">h1</span> {
+        <span class="hljs-attribute">text-align</span>: center;
+      }
+    </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hello, World!<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
+	<p>You write the <code>&lt;title&gt;</code> and the <code>&lt;style&gt;</code> (CSS) inside the <code>&lt;head&gt;</code>.
+		You write the actual HTML inside the <code>&lt;body&gt;</code>.</p>
+	<h2 id="3-the-box-model">3. The Box Model</h2>
+	<p>You know that <strong>everything</strong> in HTML is a <strong>BOX</strong>. Even circles, ovals and curves are boxes.</p>
+	<p>Google-
+		<img src="./images/google-box.png" alt="Google Box Model">
+	</p>
+	<p>Instagram-
+		<img src="./images/instagram-box.png" alt="Instagram Box Model">
+	</p>
+	<p>Every element in a web page is placed according to the box model.
+		This is how the box model looks-<br>
+		<img src="./images/box-model.png" alt="Box Model">
+	</p>
+	<p>The Box Model has 4 components-</p>
+	<ul>
+		<li>Content: It can be any HTML element, e.g. <code>&lt;h1&gt;&lt;/h1&gt;</code>, <code>&lt;img&gt;&lt;/img&gt;</code>, <code>&lt;div&gt;&lt;/div&gt;</code>,
+			<code>&lt;p&gt;&lt;/p&gt;</code>, etc.
+		</li>
+		<li>Border: This is the border of the Content.</li>
+		<li>Margin: The distance between HTML elements, e.g. if you have have 2 <code>&lt;img&gt;&lt;/img&gt;</code> elements then the distance between them is the margin.</li>
+		<li>Padding: The distance between the Border and the Content is known as padding.</li>
+	</ul>
+	<p>Since we have 4 directions - TOP, RIGHT, BOTTOM, LEFT, we can specify border, margin and padding using them.
+		Example-</p>
+	<pre class="hljs"><code><div><span class="hljs-selector-tag">img</span> {
+  <span class="hljs-attribute">border-top</span>: <span class="hljs-number">10px</span>;
+  <span class="hljs-attribute">border-right</span>: <span class="hljs-number">10px</span>;
+  <span class="hljs-attribute">border-bottom</span>: <span class="hljs-number">10px</span>;
+  <span class="hljs-attribute">border-left</span>: <span class="hljs-number">10px</span>;
+
+  <span class="hljs-attribute">margin-top</span>: <span class="hljs-number">10px</span>;
+  <span class="hljs-attribute">margin-right</span>: <span class="hljs-number">10px</span>;
+  <span class="hljs-attribute">margin-bottom</span>: <span class="hljs-number">10px</span>;
+  <span class="hljs-attribute">margin-left</span>: <span class="hljs-number">10px</span>;
+
+  <span class="hljs-attribute">padding-top</span>: <span class="hljs-number">10px</span>;
+  <span class="hljs-attribute">padding-right</span>: <span class="hljs-number">10px</span>;
+  <span class="hljs-attribute">padding-bottom</span>: <span class="hljs-number">10px</span>;
+  <span class="hljs-attribute">padding-left</span>: <span class="hljs-number">10px</span>;
+}
+</div></code></pre>
+	<h2 id="4-inline-and-block-elements">4. Inline and Block Elements</h2>
+	<p>There are two types of HTML elements-</p>
+	<ul>
+		<li>Block: They occupy the entire line, even though there is enough space for others. - e.g. <code>h1</code>-<code>h6</code>, <code>p</code>, <code>div</code>,
+			<code>ul</code>, <code>li</code>, etc.
+		</li>
+		<li>Inline: They occupy only that much space that is required for them, and leave the remaining space in the line for others. - e.g. <code>img</code>, <code>strong</code>,
+			<code>em</code>, <code>a</code>, etc.
+		</li>
+	</ul>
+	<p>To convert inline elements to block elements and vice-versa we use the <code>display</code> property in CSS.</p>
+	<p>Example-</p>
+	<pre class="hljs"><code><div><span class="hljs-selector-tag">img</span> {
+  <span class="hljs-attribute">display</span>: block;
+}
+
+<span class="hljs-selector-tag">h1</span> {
+  <span class="hljs-attribute">display</span>: inline;
+}
+</div></code></pre>
+	<p>Note: For a block element when there is enough space on the line, we can set <code>margin-left: auto;</code> &amp; <code>margin-right: auto;</code> to tell the computer to
+		divide the margin &quot;equally&quot; on both left &amp; right side, this way the element will get aligned in center.</p>
+	<h3 id="width--height-of-elements">Width &amp; Height of Elements</h3>
+	<p>You can control the size (width &amp; height) of elements using the <code>width</code> &amp; <code>height</code> property in CSS.</p>
+	<p>Example:</p>
+	<pre class="hljs"><code><div><span class="hljs-selector-tag">img</span> {
+  <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;
+  <span class="hljs-attribute">height</span>: <span class="hljs-number">70px</span>;
+}
+</div></code></pre>
+	<h3 id="the-div-element">The <code>&lt;div&gt;</code> element</h3>
+	<p>This HTML element is used to create <strong>logical divisions</strong> on the web page.<br>
+		It acts as a container which &quot;groups&quot; multiple HTML elements together.</p>
+	<p>It does not have any visual effect on the content or the layout of its children elements until you apply some style using CSS.</p>
+	<p>Example-</p>
+	<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"button"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"Google Search"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">input</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"button"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"I'm Feeling Lucky"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">input</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</div></code></pre>
+	<pre class="hljs"><code><div><span class="hljs-selector-tag">div</span> {
+  <span class="hljs-attribute">width</span>: <span class="hljs-number">500px</span>;
+}
+</div></code></pre>
+	<h2 id="5-the-id-attribute-selector">5. The <code>id</code> attribute selector</h2>
+	<p>When you have multiple HTML tags but want to apply some style on only a specific tag you cannot use the HTML tag name.</p>
+	<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="css">
+  <span class="hljs-selector-tag">input</span> {
+    <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;
+  }
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"button"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"Google Search"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">input</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"button"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"I'm Feeling Lucky"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">input</span>&gt;</span>
+</div></code></pre>
+	<p>In this example the style will apply to both the <code>input</code> elements.
+		If you want to select a &quot;specific&quot; element then you have to use the <code>id</code> selector.</p>
+	<p>The CSS ID selector matches an element based on the value of the HTML element’s <code>id</code> attribute.<br>
+		In order for the element to be selected, its <code>id</code> attribute must match <strong>exactly</strong> the value given in the selector.</p>
+	<p>Example-</p>
+	<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="css">
+  <span class="hljs-selector-id">#search-button</span> {
+    <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;
+  }
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"search-button"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"button"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"Google Search"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">input</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"button"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"I'm Feeling Lucky"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">input</span>&gt;</span>
+</div></code></pre>
+	<p>Note: The <code>id</code> selector begins with a hash <code>#</code></p>
+
+</body>
+
+</html>
