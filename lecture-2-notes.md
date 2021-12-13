@@ -81,10 +81,10 @@ Example-
 
 ```css
 img {
-  border-top: 10px;
-  border-right: 10px;
-  border-bottom: 10px;
-  border-left: 10px;
+  border-top: 5px solid red;
+  border-right: 5px solid red;
+  border-bottom: 5px solid red;
+  border-left: 5px solid red;
 
   margin-top: 10px;
   margin-right: 10px;
