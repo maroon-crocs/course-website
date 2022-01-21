@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>javascript-notes.md</title>
+	<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-EZP1NFJKG0"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+
+		gtag('config', 'G-EZP1NFJKG0');
+	</script>
+
+	<style>
+		/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+		/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+		body {
+			font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+			font-size: var(--vscode-markdown-font-size, 14px);
+			padding: 0 26px;
+			line-height: var(--vscode-markdown-line-height, 22px);
+			word-wrap: break-word;
+		}
+
+		#code-csp-warning {
+			position: fixed;
+			top: 0;
+			right: 0;
+			color: white;
+			margin: 16px;
+			text-align: center;
+			font-size: 12px;
+			font-family: sans-serif;
+			background-color: #444444;
+			cursor: pointer;
+			padding: 6px;
+			box-shadow: 1px 1px 1px rgba(0, 0, 0, .25);
+		}
+
+		#code-csp-warning:hover {
+			text-decoration: none;
+			background-color: #007acc;
+			box-shadow: 2px 2px 2px rgba(0, 0, 0, .25);
+		}
+
+		body.scrollBeyondLastLine {
+			margin-bottom: calc(100vh - 22px);
+		}
+
+		body.showEditorSelection .code-line {
+			position: relative;
+		}
+
+		body.showEditorSelection .code-active-line:before,
+		body.showEditorSelection .code-line:hover:before {
+			content: "";
+			display: block;
+			position: absolute;
+			top: 0;
+			left: -12px;
+			height: 100%;
+		}
+
+		body.showEditorSelection li.code-active-line:before,
+		body.showEditorSelection li.code-line:hover:before {
+			left: -30px;
+		}
+
+		.vscode-light.showEditorSelection .code-active-line:before {
+			border-left: 3px solid rgba(0, 0, 0, 0.15);
+		}
+
+		.vscode-light.showEditorSelection .code-line:hover:before {
+			border-left: 3px solid rgba(0, 0, 0, 0.40);
+		}
+
+		.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+			border-left: none;
+		}
+
+		.vscode-dark.showEditorSelection .code-active-line:before {
+			border-left: 3px solid rgba(255, 255, 255, 0.4);
+		}
+
+		.vscode-dark.showEditorSelection .code-line:hover:before {
+			border-left: 3px solid rgba(255, 255, 255, 0.60);
+		}
+
+		.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+			border-left: none;
+		}
+
+		.vscode-high-contrast.showEditorSelection .code-active-line:before {
+			border-left: 3px solid rgba(255, 160, 0, 0.7);
+		}
+
+		.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+			border-left: 3px solid rgba(255, 160, 0, 1);
+		}
+
+		.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+			border-left: none;
+		}
+
+		img {
+			max-width: 100%;
+			max-height: 100%;
+		}
+
+		a {
+			text-decoration: none;
+		}
+
+		a:hover {
+			text-decoration: underline;
+		}
+
+		a:focus,
+		input:focus,
+		select:focus,
+		textarea:focus {
+			outline: 1px solid -webkit-focus-ring-color;
+			outline-offset: -1px;
+		}
+
+		hr {
+			border: 0;
+			height: 2px;
+			border-bottom: 2px solid;
+		}
+
+		h1 {
+			padding-bottom: 0.3em;
+			line-height: 1.2;
+			border-bottom-width: 1px;
+			border-bottom-style: solid;
+		}
+
+		h1,
+		h2,
+		h3 {
+			font-weight: normal;
+		}
+
+		table {
+			border-collapse: collapse;
+		}
+
+		table>thead>tr>th {
+			text-align: left;
+			border-bottom: 1px solid;
+		}
+
+		table>thead>tr>th,
+		table>thead>tr>td,
+		table>tbody>tr>th,
+		table>tbody>tr>td {
+			padding: 5px 10px;
+		}
+
+		table>tbody>tr+tr>td {
+			border-top: 1px solid;
+		}
+
+		blockquote {
+			margin: 0 7px 0 5px;
+			padding: 0 16px 0 10px;
+			border-left-width: 5px;
+			border-left-style: solid;
+		}
+
+		code {
+			font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+			font-size: 1em;
+			line-height: 1.357em;
+		}
+
+		body.wordWrap pre {
+			white-space: pre-wrap;
+		}
+
+		pre:not(.hljs),
+		pre.hljs code>div {
+			padding: 16px;
+			border-radius: 3px;
+			overflow: auto;
+		}
+
+		pre code {
+			color: var(--vscode-editor-foreground);
+			tab-size: 4;
+		}
+
+		/** Theming */
+
+		.vscode-light pre {
+			background-color: rgba(220, 220, 220, 0.4);
+		}
+
+		.vscode-dark pre {
+			background-color: rgba(10, 10, 10, 0.4);
+		}
+
+		.vscode-high-contrast pre {
+			background-color: rgb(0, 0, 0);
+		}
+
+		.vscode-high-contrast h1 {
+			border-color: rgb(0, 0, 0);
+		}
+
+		.vscode-light table>thead>tr>th {
+			border-color: rgba(0, 0, 0, 0.69);
+		}
+
+		.vscode-dark table>thead>tr>th {
+			border-color: rgba(255, 255, 255, 0.69);
+		}
+
+		.vscode-light h1,
+		.vscode-light hr,
+		.vscode-light table>tbody>tr+tr>td {
+			border-color: rgba(0, 0, 0, 0.18);
+		}
+
+		.vscode-dark h1,
+		.vscode-dark hr,
+		.vscode-dark table>tbody>tr+tr>td {
+			border-color: rgba(255, 255, 255, 0.18);
+		}
+	</style>
+
+	<style>
+		/*
+
+Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-license.org/
+
+*/
+
+		.hljs {
+			display: block;
+			overflow-x: auto;
+			padding: 0.5em;
+			background: #23241f;
+		}
+
+		.hljs,
+		.hljs-tag,
+		.hljs-subst {
+			color: #f8f8f2;
+		}
+
+		.hljs-strong,
+		.hljs-emphasis {
+			color: #a8a8a2;
+		}
+
+		.hljs-bullet,
+		.hljs-quote,
+		.hljs-number,
+		.hljs-regexp,
+		.hljs-literal,
+		.hljs-link {
+			color: #ae81ff;
+		}
+
+		.hljs-code,
+		.hljs-title,
+		.hljs-section,
+		.hljs-selector-class {
+			color: #a6e22e;
+		}
+
+		.hljs-strong {
+			font-weight: bold;
+		}
+
+		.hljs-emphasis {
+			font-style: italic;
+		}
+
+		.hljs-keyword,
+		.hljs-selector-tag,
+		.hljs-name,
+		.hljs-attr {
+			color: #f92672;
+		}
+
+		.hljs-symbol,
+		.hljs-attribute {
+			color: #66d9ef;
+		}
+
+		.hljs-params,
+		.hljs-class .hljs-title {
+			color: #f8f8f2;
+		}
+
+		.hljs-string,
+		.hljs-type,
+		.hljs-built_in,
+		.hljs-builtin-name,
+		.hljs-selector-id,
+		.hljs-selector-attr,
+		.hljs-selector-pseudo,
+		.hljs-addition,
+		.hljs-variable,
+		.hljs-template-variable {
+			color: #e6db74;
+		}
+
+		.hljs-comment,
+		.hljs-deletion,
+		.hljs-meta {
+			color: #75715e;
+		}
+	</style>
+
+	<style>
+		/*
+ * Markdown PDF CSS
+ */
+
+		body {
+			font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+			padding: 0 12px;
+		}
+
+		pre {
+			background-color: #f8f8f8;
+			border: 1px solid #cccccc;
+			border-radius: 3px;
+			overflow-x: auto;
+			white-space: pre-wrap;
+			overflow-wrap: break-word;
+		}
+
+		pre:not(.hljs) {
+			padding: 23px;
+			line-height: 19px;
+		}
+
+		blockquote {
+			background: rgba(127, 127, 127, 0.1);
+			border-color: rgba(0, 122, 204, 0.5);
+		}
+
+		.emoji {
+			height: 1.4em;
+		}
+
+		code {
+			font-size: 14px;
+			line-height: 19px;
+		}
+
+		/* for inline code */
+		:not(pre):not(.hljs)>code {
+			color: #C9AE75;
+			/* Change the old color so it seems less like an error */
+			font-size: inherit;
+		}
+
+		/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+		.page {
+			page-break-after: always;
+		}
+	</style>
+
+	<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+
+<body>
+	<script>
+		mermaid.initialize({
+			startOnLoad: true,
+			theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+				? 'dark'
+				: 'default'
+		});
+	</script>
+	<h1 id="javascript-notes">JavaScript Notes</h1>
+	<h2 id="1-datatypes-arithmetic--comparison-operators">1. Datatypes, Arithmetic &amp; Comparison Operators</h2>
+	<p>JavaScript has multiple datatypes-</p>
+	<ul>
+		<li>Integer (Whole Number) - Example: <code>23</code>, <code>848</code>, <code>347</code></li>
+		<li>Float (Decimal Number) - Example: <code>3.14</code>, <code>48.938</code>, <code>9933.3333</code></li>
+		<li>String (Textual Data) - Example: <code>&quot;Hello&quot;</code>, <code>&quot;John&quot;</code>, <code>&quot;New York&quot;</code></li>
+		<li>Boolean (True or False) - Example: <code>true</code>, <code>false</code></li>
+		<li>and more</li>
+	</ul>
+	<p>JavaScript has these operators-</p>
+	<ul>
+		<li><code>+</code> Addition operator, <code>10 + 5; // Output: 15</code></li>
+		<li><code>-</code> Subtraction operator, <code>10 - 5; // Output: 5</code></li>
+		<li><code>*</code> Multiplication operator, <code>10 * 5; // Output: 50</code></li>
+		<li><code>/</code> Division operator, <code>10 / 5; // Output: 2</code></li>
+		<li><code>%</code> Modulus operator, <code>11 % 5; // Output: 1</code></li>
+		<li><code>==</code> Comparison (Equality) operator, <code>11 == 5; // Output: false</code></li>
+		<li><code>!=</code> Comparison (Equality) operator, <code>11 != 5; // Output: true</code></li>
+		<li><code>&gt;</code> Greater than operator, <code>10 &gt; 5; // Output: true</code></li>
+		<li><code>&lt;</code> Less than operator, <code>5 &lt; 10; // Output: true</code></li>
+		<li><code>&gt;=</code> Greater than equal to operator, <code>10 &gt;= 5; // Output: true</code></li>
+		<li><code>&lt;=</code> Less than operator, <code>5 &lt;= 10; // Output: true</code></li>
+		<li><code>&amp;&amp;</code> Boolean AND operator, <code>true &amp;&amp; false; // Output: false</code></li>
+		<li><code>||</code> Boolean OR operator, <code>true || false; // Output: true</code></li>
+		<li><code>!</code> Boolean NOT operator, <code>!true; // Output: false</code></li>
+		<li>and more</li>
+	</ul>
+	<p>Arithmetic operations can be done as usual-</p>
+	<pre class="hljs"><code><div><span class="hljs-number">1</span> + <span class="hljs-number">1</span>; <span class="hljs-comment">// Output: 2</span>
+<span class="hljs-number">0.1</span> + <span class="hljs-number">0.1</span>; <span class="hljs-comment">// Output: 0.2</span>
+<span class="hljs-number">8</span> - <span class="hljs-number">1</span>; <span class="hljs-comment">// Output: 7</span>
+<span class="hljs-number">10</span> * <span class="hljs-number">2</span>; <span class="hljs-comment">// Output: 20</span>
+<span class="hljs-number">35</span> / <span class="hljs-number">5</span>; <span class="hljs-comment">// Output: 7</span>
+<span class="hljs-number">5</span> / <span class="hljs-number">2</span>; <span class="hljs-comment">// Output: 2.5</span>
+</div></code></pre>
+	<p>Modulo operation can be done using the modulus operator <code>%</code>, the mod operation gives the remainder of a division as a result-</p>
+	<pre class="hljs"><code><div><span class="hljs-number">10</span> % <span class="hljs-number">2</span>; <span class="hljs-comment">// Output: 0</span>
+<span class="hljs-number">30</span> % <span class="hljs-number">4</span>; <span class="hljs-comment">// Output: 2</span>
+<span class="hljs-number">18.5</span> % <span class="hljs-number">7</span>; <span class="hljs-comment">// Output: 4.5</span>
+</div></code></pre>
+	<p>Operations can be preferred over one another by using parentheses, the inner most parentheses will be performed on first and then moves towards the outside ones-</p>
+	<pre class="hljs"><code><div>(<span class="hljs-number">1</span> + <span class="hljs-number">3</span>) * <span class="hljs-number">2</span>; <span class="hljs-comment">// Output: 8</span>
+<span class="hljs-number">3</span> + <span class="hljs-number">2</span> * (<span class="hljs-number">5</span> + <span class="hljs-number">10</span>); <span class="hljs-comment">// Output: 33</span>
+</div></code></pre>
+	<h2 id="2-variables">2. Variables</h2>
+	<p>Variables are like boxes, you can store any datatype (Integer, String etc.) inside them.<br>
+		Variables are <strong>declared</strong> with the <code>var</code> keyword.
+		Example-</p>
+	<pre class="hljs"><code><div><span class="hljs-keyword">var</span> a;
+</div></code></pre>
+	<p>After declaring a variable you can define it by using the <code>assignment</code> operator <code>=</code>
+		Example-</p>
+	<pre class="hljs"><code><div>a = <span class="hljs-number">20</span>;
+</div></code></pre>
+	<p>Thus, there are <strong>two</strong> steps for working with variables-</p>
+	<ol>
+		<li><strong>Declaration</strong> - You are <em>declaring</em> that you'll be working with a variable</li>
+		<li><strong>Definition</strong> - You are <em>defining</em> the variable by assigning it a value</li>
+	</ol>
+	<p>The values on the <em>right hand side</em> of the assignment sign <code>=</code>, is assigned to the box (variable) on the left.</p>
+	<p>You can declare a variable in a single step, and then define it in another step. Or you can <em>declare</em> and <em>define</em> the variable in a single statement-<br>
+		Example-</p>
+	<pre class="hljs"><code><div><span class="hljs-keyword">var</span> a = <span class="hljs-number">10</span>;
+</div></code></pre>
+	<p>Anything can be stored inside a variable-<br>
+		Example-</p>
+	<pre class="hljs"><code><div><span class="hljs-keyword">var</span> a = <span class="hljs-number">10</span>;
+<span class="hljs-keyword">var</span> b = <span class="hljs-string">"Hello"</span>;
+<span class="hljs-keyword">var</span> c = <span class="hljs-number">1.3</span>;
+<span class="hljs-keyword">var</span> c = b;
+</div></code></pre>
+	<p>Math operations can also be performed on variables if the variables are storing, Integers or Floats-<br>
+		Example:</p>
+	<pre class="hljs"><code><div><span class="hljs-keyword">var</span> a = <span class="hljs-number">22</span>;
+<span class="hljs-keyword">var</span> b = <span class="hljs-number">7</span>;
+<span class="hljs-keyword">var</span> pie = <span class="hljs-number">22</span> / <span class="hljs-number">7</span>;
+</div></code></pre>
+	<p>You can increment (increase) or decrement (decrease) a value inside a variable like this-</p>
+	<pre class="hljs"><code><div><span class="hljs-keyword">var</span> a = <span class="hljs-number">10</span>;
+a = a + <span class="hljs-number">1</span>; <span class="hljs-comment">// a = 10 + 1</span>
+</div></code></pre>
+	<pre class="hljs"><code><div><span class="hljs-keyword">var</span> a = <span class="hljs-number">10</span>;
+a = a + <span class="hljs-number">5</span>; <span class="hljs-comment">// a = 10 + 5</span>
+</div></code></pre>
+	<pre class="hljs"><code><div><span class="hljs-keyword">var</span> a = <span class="hljs-number">10</span>;
+a = a - <span class="hljs-number">1</span>; <span class="hljs-comment">// a = 10 - 1</span>
+</div></code></pre>
+	<p>There is a shorthand property for incrementing a variable by 1</p>
+	<pre class="hljs"><code><div><span class="hljs-keyword">var</span> a = <span class="hljs-number">10</span>;
+a++; <span class="hljs-comment">// This is same as a = a + 1;</span>
+a--; <span class="hljs-comment">// This is same as a = a - 1;</span>
+</div></code></pre>
+	<p><strong>Note:</strong> You must always use <strong>meaningful</strong> names for variables as it will help you to read, understand and solve bugs in the code later.
+		Like if you're storing a name inside a variable you must name the variable as <code>var name = &quot;John&quot;;</code> and <strong>NOT</strong>
+		<code>var a = &quot;John&quot;;</code>
+	</p>
+	<h2 id="3-strings">3. Strings</h2>
+	<p>Strings are a list of characters, for example the string <code>&quot;Hello&quot;</code> is made up of these individual characters, <code>H</code>, <code>e</code>,
+		<code>l</code>, <code>l</code>, <code>o</code>.<br>
+		<strong>Note:</strong> Strings must be enclosed within single quotes <code>''</code> or double quotes <code>&quot;&quot;</code>, <strong>don't</strong> mix both-<br>
+		Example-
+	</p>
+	<pre class="hljs"><code><div><span class="hljs-keyword">var</span> name = <span class="hljs-string">"John"</span>;
+</div></code></pre>
+	<p>The reason we use quotes for strings is because without quotes computer will think it is a variable and try to use it that way, example-</p>
+	<pre class="hljs"><code><div><span class="hljs-keyword">var</span> name = John; <span class="hljs-comment">// Without quotes John is a variable here.</span>
+<span class="hljs-keyword">var</span> name = <span class="hljs-string">"John"</span>; <span class="hljs-comment">// Adding quotes to John makes it a string.</span>
+</div></code></pre>
+	<p>You can access indiviual characters of a string by using <code>bracket notation</code>, example-</p>
+	<pre class="hljs"><code><div><span class="hljs-keyword">var</span> name = <span class="hljs-string">"John"</span>;
+name[<span class="hljs-number">0</span>]; <span class="hljs-comment">// Output: J</span>
+name[<span class="hljs-number">1</span>]; <span class="hljs-comment">// Output: o</span>
+name[<span class="hljs-number">2</span>]; <span class="hljs-comment">// Output: h</span>
+name[<span class="hljs-number">3</span>]; <span class="hljs-comment">// Output: n</span>
+</div></code></pre>
+	<p>Or you can also use the <code>charAt()</code> method, example-</p>
+	<pre class="hljs"><code><div><span class="hljs-keyword">var</span> name = <span class="hljs-string">"John"</span>;
+name.charAt(<span class="hljs-number">0</span>); <span class="hljs-comment">// Output: J</span>
+name.charAt(<span class="hljs-number">1</span>); <span class="hljs-comment">// Output: o</span>
+name.charAt(<span class="hljs-number">2</span>); <span class="hljs-comment">// Output: h</span>
+name.charAt(<span class="hljs-number">3</span>); <span class="hljs-comment">// Output: n</span>
+</div></code></pre>
+	<p>You can also extract a part of a string also called a <strong>substring</strong>, example-</p>
+	<pre class="hljs"><code><div><span class="hljs-keyword">var</span> message = <span class="hljs-string">"Today is a good day."</span>;
+message.substring(<span class="hljs-number">0</span>, <span class="hljs-number">5</span>); <span class="hljs-comment">// Output: Today</span>
+message.substring(<span class="hljs-number">6</span>, <span class="hljs-number">15</span>); <span class="hljs-comment">// Output: is a good</span>
+</div></code></pre>
+	<p>To find out the total number of characters in a string you must use the <code>length</code> property, example-</p>
+	<pre class="hljs"><code><div><span class="hljs-keyword">var</span> name = <span class="hljs-string">"James Bond"</span>;
+name.length; <span class="hljs-comment">// Output: 10</span>
+</div></code></pre>
+	<p>To join multiple strings together, we use the <code>+</code> operator, example-</p>
+	<pre class="hljs"><code><div><span class="hljs-keyword">var</span> firstName = <span class="hljs-string">"James"</span>;
+<span class="hljs-keyword">var</span> lastName = <span class="hljs-string">"Bond"</span>;
+firstName + <span class="hljs-string">" "</span> + lastName; <span class="hljs-comment">// Output: James Bond</span>
+</div></code></pre>
+	<h3 id="string-methods--properties">String <em>Methods</em> &amp; <em>Properties</em></h3>
+	<p>There are several Methods and Properties available on Strings, you can use them for various operations, here are a few-</p>
+	<ul>
+		<li>
+			<p><code>length</code> - This property is used to find out the number of characters in a string, also known as the <em>length</em> of the string, example-</p>
+			<pre class="hljs"><code><div><span class="hljs-keyword">var</span> movie = <span class="hljs-string">"Iron Man"</span>;
+movie.length; <span class="hljs-comment">// Output: 8</span>
+</div></code></pre>
+		</li>
+		<li>
+			<p><code>slice(start, end)</code> - This methods extracts a part of a string and returns the extracted part as a new string. The method takes 2 parameters: the start
+				position, and the end position (end not included), example-</p>
+			<pre class="hljs"><code><div><span class="hljs-keyword">var</span> college = <span class="hljs-string">"Indian Institute of Technology"</span>;
+college.slice(<span class="hljs-number">7</span>, <span class="hljs-number">16</span>); <span class="hljs-comment">// Output: Institute</span>
+</div></code></pre>
+			<p>If a parameter is negative, the position is counted from the end of the string, example-</p>
+			<pre class="hljs"><code><div><span class="hljs-keyword">var</span> college = <span class="hljs-string">"Indian Institute of Technology"</span>;
+college.slice(<span class="hljs-number">-23</span>, <span class="hljs-number">-14</span>); <span class="hljs-comment">// Output: Institute</span>
+</div></code></pre>
+		</li>
+		<li>
+			<p><code>substring(start, end)</code> - This methods extracts a part of a string and returns the extracted part as a new string. The method takes 2 parameters: the
+				start position, and the end position (end not included).<br>
+				<code>substring()</code> is similar to <code>slice()</code>, the difference is that <code>substring()</code> cannot accept negative indexes, example-
+			</p>
+			<pre class="hljs"><code><div><span class="hljs-keyword">var</span> college = <span class="hljs-string">"Indian Institute of Technology"</span>;
+college.substring(<span class="hljs-number">7</span>, <span class="hljs-number">16</span>); <span class="hljs-comment">// Output: Institute</span>
+</div></code></pre>
+		</li>
+		<li>
+			<p><code>replace(old, new)</code> - The <code>replace()</code> method replaces a part of a string with a new string, example-</p>
+			<pre class="hljs"><code><div><span class="hljs-keyword">var</span> text = <span class="hljs-string">"I am sad"</span>;
+text.replace(<span class="hljs-string">"sad"</span>, <span class="hljs-string">"happy"</span>); <span class="hljs-comment">// Output: I am happy</span>
+</div></code></pre>
+		</li>
+		<li>
+			<p><code>toUpperCase()</code> - It converts the string to upper case (capital letters), example-</p>
+			<pre class="hljs"><code><div><span class="hljs-keyword">var</span> day = <span class="hljs-string">"Friday"</span>;
+day.toUpperCase(); <span class="hljs-comment">// Output: FRIDAY</span>
+</div></code></pre>
+		</li>
+		<li>
+			<p><code>toLowerCase()</code> - It converts the string to lower case (small letters), example-</p>
+			<pre class="hljs"><code><div><span class="hljs-keyword">var</span> day = <span class="hljs-string">"Friday"</span>;
+day.toLowerCase(); <span class="hljs-comment">// Output: friday</span>
+</div></code></pre>
+		</li>
+	</ul>
+	<h3 id="strings-are-immutable">Strings are Immutable</h3>
+	<p>Immutable means something <strong>cannot</strong> be modified, whereas mutable means it <strong>can</strong> be modified.
+		Strings in JavaScript are <strong>Immutable</strong>, therefore when you apply any modification on the string the <strong>original</strong> string is <strong>not</strong>
+		modified, instead a <strong>new</strong> string is returned after applying the modification.</p>
+	<pre class="hljs"><code><div><span class="hljs-keyword">var</span> name = <span class="hljs-string">"John"</span>;
+name[<span class="hljs-number">0</span>] = <span class="hljs-string">"H"</span>; <span class="hljs-comment">// You expect the output to be "Hohn", but it will NOT work, because strings are immutable.</span>
+</div></code></pre>
+	<p>Similarly, when you use string methods like <code>slice()</code>, <code>substring()</code>, <code>replace()</code>, <code>toUpperCase()</code>, etc. to modify a string, the
+		<em>original</em> string is <strong>NOT</strong> modified, instead a <strong>new</strong> string is returned, example-
+	</p>
+	<pre class="hljs"><code><div><span class="hljs-keyword">var</span> day = <span class="hljs-string">"Friday"</span>;
+<span class="hljs-built_in">console</span>.log(day.toUpperCase()); <span class="hljs-comment">// Output: FRIDAY</span>
+<span class="hljs-built_in">console</span>.log(day); <span class="hljs-comment">// Output: Friday</span>
+</div></code></pre>
+	<p>In the above example the <em>original</em> string inside the <code>day</code> variable is not modified, it still remains the same.</p>
+	<p>To update the original string, you have to reassign the modified string to the original variable like this-</p>
+	<pre class="hljs"><code><div><span class="hljs-keyword">var</span> day = <span class="hljs-string">"Friday"</span>;
+day = day.toUpperCase();
+<span class="hljs-built_in">console</span>.log(day); <span class="hljs-comment">// Output: FRIDAY</span>
+</div></code></pre>
+	<p><em>Note:</em> <code>console.log()</code> is used for output .</p>
+	<h3 id="escape-characters">Escape Characters</h3>
+	<p>You declare strings using either double or single quotes like this-</p>
+	<pre class="hljs"><code><div><span class="hljs-keyword">var</span> name = <span class="hljs-string">"John"</span>; <span class="hljs-comment">// Used Double Quotes ("")</span>
+<span class="hljs-keyword">var</span> name = <span class="hljs-string">"John"</span>; <span class="hljs-comment">// Used Single Quotes ('')</span>
+</div></code></pre>
+	<p>But when your string contains double quotes, you must use single quotes outside-</p>
+	<pre class="hljs"><code><div><span class="hljs-keyword">var</span> message = <span class="hljs-string">'He said, "I am coming for you".'</span>; <span class="hljs-comment">// Output: He said, "I am coming for you".</span>
+</div></code></pre>
+	<p>And when your string contains single quotes inside, you must use double quotes outside-</p>
+	<pre class="hljs"><code><div><span class="hljs-keyword">var</span> shampoo = <span class="hljs-string">"L'Oreal Paris"</span>; <span class="hljs-comment">// Output: L'Oreal Paris</span>
+</div></code></pre>
+	<p>But when your string contains both, double and single quotes, you use a <strong>back slash</strong> <code>\</code>, to <strong>escapse</strong> this problem-</p>
+	<pre class="hljs"><code><div><span class="hljs-keyword">var</span> message = <span class="hljs-string">'He said, "I want L\'Oreal Paris shampoo"'</span>; <span class="hljs-comment">// Output: He said, "I want L'Oreal Paris shampoo"</span>
+</div></code></pre>
+	<p>Similarly, when your string contains a back slash, the computer thinks that the back slash is being used for &quot;escaping&quot; purpose and treats it that way, so when you
+		actually want a back slash you add another <code>\</code> -</p>
+	<pre class="hljs"><code><div><span class="hljs-keyword">var</span> calc = <span class="hljs-string">"2  2"</span>; <span class="hljs-comment">// Output: 2 2</span>
+<span class="hljs-keyword">var</span> calc = <span class="hljs-string">"2 \\ 2"</span>; <span class="hljs-comment">// Output: 2 \ 2</span>
+</div></code></pre>
+	<p>Below are the list of <strong>escape characters</strong> and their usage-</p>
+	<table>
+		<thead>
+			<tr>
+				<th>Escape Character</th>
+				<th>Output</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>\'</td>
+				<td>'</td>
+			</tr>
+			<tr>
+				<td>\&quot;</td>
+				<td>&quot;</td>
+			</tr>
+			<tr>
+				<td>\\</td>
+				<td>\</td>
+			</tr>
+		</tbody>
+	</table>
+	<p><code>\n</code> and <code>\t</code> are few of the escape sequences that are used inside strings for special purposes,example-</p>
+	<ul>
+		<li><code>\n</code> pushes the string next to it on the <strong>n</strong>ew line</li>
+		<li><code>\t</code> adds a TAB</li>
+	</ul>
+	<pre class="hljs"><code><div><span class="hljs-keyword">var</span> name = <span class="hljs-string">"James\nBond"</span>; <span class="hljs-comment">/* Output:  James
+                                      Bond; */</span>
+<span class="hljs-keyword">var</span> name = <span class="hljs-string">"James\tBond"</span>; <span class="hljs-comment">// Output: James  Bond</span>
+</div></code></pre>
+	<h2 id="4-comments">4. Comments</h2>
+	<p>Comments are like personal notes and are ignored by the computer, you can write anything in a comment and it will be ignored by the computer.<br>
+		They are used to describe what code you're writing, so that anyone understand the code by reading the comments.<br>
+		There are 2 types of comments-</p>
+	<ul>
+		<li>
+			<p>Single Line Comments</p>
+			<pre class="hljs"><code><div><span class="hljs-comment">// This is a single line comment. By adding 2 forward slashes you comment a single line.</span>
+</div></code></pre>
+		</li>
+		<li>
+			<p>Multi Line Comments</p>
+			<pre class="hljs"><code><div><span class="hljs-comment">/*
+      This is a multi line comment.
+      To comment multiple lines in a single go, you start the comment with
+      a forward slash and a star, and end it with a star and a forward slash.
+*/</span>
+</div></code></pre>
+		</li>
+	</ul>
+	<p>This is how a comment is used, to explain code-</p>
+	<pre class="hljs"><code><div><span class="hljs-comment">/*
+    Ask the user for first and last name seperately,
+    we can later get the full name by joining the first and last name.
+*/</span>
+<span class="hljs-keyword">var</span> firstName = <span class="hljs-string">"James"</span>;
+<span class="hljs-keyword">var</span> lastName = <span class="hljs-string">"Bond"</span>;
+<span class="hljs-keyword">var</span> fullName = firstName + <span class="hljs-string">" "</span> + lastName; <span class="hljs-comment">// Adding the first and last name variable to get the full name.</span>
+</div></code></pre>
+	<h2 id="5-arrays">5. Arrays</h2>
+	<p>Arrays are an <strong>ordered list</strong> of values of <strong>any</strong> data type-<br>
+		We declare an array using square brackets <code>[]</code>, example-</p>
+	<pre class="hljs"><code><div><span class="hljs-keyword">var</span> myArray = [<span class="hljs-string">"James"</span>, <span class="hljs-number">40</span>, <span class="hljs-literal">false</span>];
+</div></code></pre>
+	<p>You can declare an empty array like this-</p>
+	<pre class="hljs"><code><div><span class="hljs-keyword">var</span> myArray = [];
+</div></code></pre>
+	<p>and then add items to it using bracket notation <code>[]</code>-</p>
+	<pre class="hljs"><code><div>myArray[<span class="hljs-number">0</span>] = <span class="hljs-string">"James"</span>;
+myArray[<span class="hljs-number">1</span>] = <span class="hljs-number">40</span>;
+myArray[<span class="hljs-number">2</span>] = <span class="hljs-literal">false</span>;
+</div></code></pre>
+	<p>Or, you can declare, define and add items to the array at the same time-</p>
+	<pre class="hljs"><code><div><span class="hljs-keyword">var</span> myArray = [<span class="hljs-string">"James"</span>, <span class="hljs-number">40</span>, <span class="hljs-literal">false</span>];
+</div></code></pre>
+	<p><strong>Note</strong>: Even though you can store any data type value inside an array.<br>
+		For sake of simplicity, always create and use an array containing items (values) of the same type.<br>
+		This will prevent many problems and headaches.</p>
+	<p>This is an <em>array of <strong>int</strong></em>-</p>
+	<pre class="hljs"><code><div><span class="hljs-keyword">var</span> a = [<span class="hljs-number">10</span>, <span class="hljs-number">20</span>, <span class="hljs-number">30</span>, <span class="hljs-number">40</span>];
+</div></code></pre>
+	<p>An <em>array of <strong>float</strong></em>-</p>
+	<pre class="hljs"><code><div><span class="hljs-keyword">var</span> a = [<span class="hljs-number">3.14</span>, <span class="hljs-number">45.23</span>, <span class="hljs-number">76.45</span>, <span class="hljs-number">87.99</span>];
+</div></code></pre>
+	<p>An <em>array of <strong>bool</strong></em>-</p>
+	<pre class="hljs"><code><div><span class="hljs-keyword">var</span> a = [<span class="hljs-literal">true</span>, <span class="hljs-literal">false</span>, <span class="hljs-literal">false</span>, <span class="hljs-literal">true</span>];
+</div></code></pre>
+	<p>An <em>array of <strong>string</strong></em>-</p>
+	<pre class="hljs"><code><div><span class="hljs-keyword">var</span> names = [<span class="hljs-string">"James"</span>, <span class="hljs-string">"John"</span>, <span class="hljs-string">"Jim"</span>, <span class="hljs-string">"Johnny"</span>];
+</div></code></pre>
+	<h3 id="accessing-an-individual-item-from-an-array">Accessing an individual item from an Array</h3>
+	<p>You can use bracket notation <code>[]</code> to access elements (items) from an array-</p>
+	<pre class="hljs"><code><div><span class="hljs-keyword">var</span> names = [<span class="hljs-string">"James"</span>, <span class="hljs-string">"John"</span>, <span class="hljs-string">"Jim"</span>, <span class="hljs-string">"Johnny"</span>];
+names[<span class="hljs-number">0</span>]; <span class="hljs-comment">// Output: James</span>
+names[<span class="hljs-number">1</span>]; <span class="hljs-comment">// Output: John</span>
+names[<span class="hljs-number">2</span>]; <span class="hljs-comment">// Output: Jim</span>
+</div></code></pre>
+	<h3 id="arrays-are-mutable">Arrays are mutable</h3>
+	<p>In JavaScript arrays are mutable, meaning the original array can be modified-</p>
+	<pre class="hljs"><code><div><span class="hljs-keyword">var</span> names = [<span class="hljs-string">"James"</span>, <span class="hljs-string">"John"</span>, <span class="hljs-string">"Jim"</span>, <span class="hljs-string">"Johnny"</span>];
+names[<span class="hljs-number">0</span>] = <span class="hljs-string">"Julius"</span>;
+<span class="hljs-built_in">console</span>.log(names); <span class="hljs-comment">// Output: ["Julius", "John", "Jim", "Johnny"]</span>
+</div></code></pre>
+	<h3 id="array-methods--properties">Array <em>Methods</em> &amp; <em>Properties</em></h3>
+	<p>There are several Methods and Properties available on Array, you can use them for various operations, here are a few-</p>
+	<ul>
+		<li>
+			<p><code>length</code> - This property is used to find out the number of elements (items) in an array, also known as the <em>length</em> of the array, example-</p>
+			<pre class="hljs"><code><div><span class="hljs-keyword">var</span> fruits = [<span class="hljs-string">"Mango"</span>, <span class="hljs-string">"Orange"</span>, <span class="hljs-string">"Apple"</span>, <span class="hljs-string">"Banana"</span>];
+fruits.length; <span class="hljs-comment">// Output: 4</span>
+</div></code></pre>
+		</li>
+		<li>
+			<p><code>push()</code> - This method adds a new element to the <strong>end</strong> of the array, example-</p>
+			<pre class="hljs"><code><div><span class="hljs-keyword">var</span> fruits = [<span class="hljs-string">"Mango"</span>, <span class="hljs-string">"Orange"</span>, <span class="hljs-string">"Apple"</span>, <span class="hljs-string">"Banana"</span>];
+fruits.push(<span class="hljs-string">"Watermelon"</span>);
+<span class="hljs-built_in">console</span>.log(fruits); <span class="hljs-comment">// Output: ["Mango", "Orange", "Apple", "Banana", "Watermelon"]</span>
+</div></code></pre>
+		</li>
+		<li>
+			<p><code>pop()</code> - This method removes an element from the <strong>end</strong> of the array, example-</p>
+			<pre class="hljs"><code><div><span class="hljs-keyword">var</span> fruits = [<span class="hljs-string">"Mango"</span>, <span class="hljs-string">"Orange"</span>, <span class="hljs-string">"Apple"</span>, <span class="hljs-string">"Banana"</span>];
+fruits.pop();
+<span class="hljs-built_in">console</span>.log(fruits); <span class="hljs-comment">// Output: ["Mango", "Orange", "Apple"]</span>
+</div></code></pre>
+		</li>
+		<li>
+			<p><code>shift()</code> - This method removes the first element from the front/start of the array, example-</p>
+			<pre class="hljs"><code><div><span class="hljs-keyword">var</span> fruits = [<span class="hljs-string">"Mango"</span>, <span class="hljs-string">"Orange"</span>, <span class="hljs-string">"Apple"</span>, <span class="hljs-string">"Banana"</span>];
+fruits.shift();
+<span class="hljs-built_in">console</span>.log(fruits); <span class="hljs-comment">// Output: ["Orange", "Apple", "Banana"]</span>
+</div></code></pre>
+		</li>
+		<li>
+			<p><code>unshift()</code> - This method adds an element at the front/start of the array, example-</p>
+			<pre class="hljs"><code><div><span class="hljs-keyword">var</span> fruits = [<span class="hljs-string">"Mango"</span>, <span class="hljs-string">"Orange"</span>, <span class="hljs-string">"Apple"</span>, <span class="hljs-string">"Banana"</span>];
+fruits.unshift(<span class="hljs-string">"Watermelon"</span>);
+<span class="hljs-built_in">console</span>.log(fruits); <span class="hljs-comment">// Output: ["Watermelon", "Mango", "Orange", "Apple", "Banana"]</span>
+</div></code></pre>
+		</li>
+	</ul>
+	<h3 id="why-and-when-to-use-array">Why and when to use array?</h3>
+	<p>When you want to represent <strong>similar</strong> items or a list in your code, you must use arrays.
+		For example, you can use multiple string variables to store a list of animals like this-</p>
+	<pre class="hljs"><code><div><span class="hljs-keyword">var</span> tiger = <span class="hljs-string">"Tiger"</span>;
+<span class="hljs-keyword">var</span> lion = <span class="hljs-string">"Lion"</span>;
+<span class="hljs-keyword">var</span> giraffe = <span class="hljs-string">"Giraffe"</span>;
+<span class="hljs-keyword">var</span> jaguar = <span class="hljs-string">"Jaguar"</span>;
+<span class="hljs-keyword">var</span> elephant = <span class="hljs-string">"Elephant"</span>;
+<span class="hljs-keyword">var</span> zebra = <span class="hljs-string">"Zebra"</span>;
+
+<span class="hljs-built_in">console</span>.log(tiger, lion, giraffe, jaguar, elephant, zebra);
+</div></code></pre>
+	<p>But it is difficult to manage them, you have to again and again create a new variable, also you cannot find out how many animals are there.</p>
+	<p>A better way is to use an array to store them like these-</p>
+	<pre class="hljs"><code><div><span class="hljs-keyword">var</span> animals = [<span class="hljs-string">"Tiger"</span>, <span class="hljs-string">"Lion"</span>, <span class="hljs-string">"Giraffe"</span>, <span class="hljs-string">"Jaguar"</span>, <span class="hljs-string">"Elephant"</span>, <span class="hljs-string">"Zebra"</span>];
+<span class="hljs-built_in">console</span>.log(animals);
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">"I have "</span> + animals.length + <span class="hljs-string">" animals"</span>); <span class="hljs-comment">// Output: I have 6 animals.</span>
+</div></code></pre>
+	<h3 id="single-and-multi-dimensional-arrays">Single and Multi Dimensional Arrays</h3>
+	<p>You've seen single dimensional arrays-</p>
+	<pre class="hljs"><code><div><span class="hljs-keyword">var</span> animals = [<span class="hljs-string">"Tiger"</span>, <span class="hljs-string">"Lion"</span>, <span class="hljs-string">"Zebra"</span>];
+animals[<span class="hljs-number">0</span>]; <span class="hljs-comment">// Output: Tiger</span>
+</div></code></pre>
+	<p>When you put one array inside another array, you get a 2D array (multidimensional array)-</p>
+	<pre class="hljs"><code><div><span class="hljs-keyword">var</span> pets = [<span class="hljs-string">"Cat"</span>, <span class="hljs-string">"Rabbit"</span>, <span class="hljs-string">"Dog"</span>];
+<span class="hljs-keyword">var</span> animals = [pets];
+</div></code></pre>
+	<p>The above code can be written in short like this-</p>
+	<pre class="hljs"><code><div><span class="hljs-keyword">var</span> animals = [[<span class="hljs-string">"Cat"</span>, <span class="hljs-string">"Rabbit"</span>, <span class="hljs-string">"Dog"</span>]];
+</div></code></pre>
+	<p>Note than we have a single array on the outside, and then another array as it's first element.<br>
+		You can use double brackets notation to access 2D array (multidimensional)-</p>
+	<pre class="hljs"><code><div><span class="hljs-keyword">var</span> animals = [[<span class="hljs-string">"Cat"</span>, <span class="hljs-string">"Rabbit"</span>, <span class="hljs-string">"Dog"</span>]];
+animals[<span class="hljs-number">0</span>]; <span class="hljs-comment">// Output: ["Cat", "Rabbit", "Dog"]</span>
+animals.length; <span class="hljs-comment">// Output: 1</span>
+animals[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>]; <span class="hljs-comment">// Output: Cat</span>
+animals[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>]; <span class="hljs-comment">// Output: Rabbit</span>
+animals[<span class="hljs-number">0</span>][<span class="hljs-number">2</span>]; <span class="hljs-comment">// Output: Dog</span>
+animals[<span class="hljs-number">0</span>].length; <span class="hljs-comment">// Output: 3</span>
+</div></code></pre>
+	<p>You can keep adding arrays inside arrays and keep going to create, 1D, 2D, 3D, 4D, 5D, nD arrays.</p>
+	<h2 id="6-conditions">6. Conditions</h2>
+	<p>Conditional statements are used to perform different actions based on different conditions or decisions.
+		In JavaScript we have the following conditional statements-</p>
+	<ul>
+		<li>Use <code>if</code> to specify a block of code to be executed, if a specified condition is true</li>
+		<li>Use <code>else</code> to specify a block of code to be executed, if the same condition is false</li>
+		<li>Use <code>else if</code> to specify a new condition to test, if the first condition is false</li>
+		<li>Use <code>switch</code> to specify many alternative blocks of code to be executed</li>
+	</ul>
+	<h3 id="if-statement"><code>if</code> statement</h3>
+	<p>You use the <code>if</code> statement to execute a code if a condition is <code>true</code>-
+		Syntax-</p>
+	<pre class="hljs"><code><div><span class="hljs-keyword">if</span> (condition) {
+  <span class="hljs-comment">//  block of code to be executed if the condition is true</span>
+}
+</div></code></pre>
+	<p>Example-</p>
+	<pre class="hljs"><code><div><span class="hljs-keyword">if</span> (day == <span class="hljs-string">"Sunday"</span>) {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Holiday!"</span>);
+}
+</div></code></pre>
+	<h3 id="else-statement"><code>else</code> statement</h3>
+	<p>You use the <code>else</code> statement to execute a code if a condition is <code>false</code>-
+		Syntax-</p>
+	<pre class="hljs"><code><div><span class="hljs-keyword">if</span> (condition) {
+  <span class="hljs-comment">//  block of code to be executed if the condition is true</span>
+} <span class="hljs-keyword">else</span> {
+  <span class="hljs-comment">//  block of code to be executed if the condition is false</span>
+}
+</div></code></pre>
+	<p>Example-</p>
+	<pre class="hljs"><code><div><span class="hljs-keyword">if</span> (day == <span class="hljs-string">"Sunday"</span>) {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Holiday!"</span>);
+} <span class="hljs-keyword">else</span> {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Working Day"</span>);
+}
+</div></code></pre>
+	<h3 id="else-if-statement"><code>else if</code> statement</h3>
+	<p>You use the <code>else if</code> statement to specify a new condition if the first condition is <code>false</code>-
+		Syntax-</p>
+	<pre class="hljs"><code><div><span class="hljs-keyword">if</span> (condition1) {
+  <span class="hljs-comment">//  block of code to be executed if condition1 is true</span>
+} <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (condition2) {
+  <span class="hljs-comment">//  block of code to be executed if the condition1 is false and condition2 is true</span>
+} <span class="hljs-keyword">else</span> {
+  <span class="hljs-comment">//  block of code to be executed if the condition1 is false and condition2 is false</span>
+}
+</div></code></pre>
+	<p>Example-</p>
+	<pre class="hljs"><code><div><span class="hljs-keyword">if</span> (day == <span class="hljs-string">"Sunday"</span>) {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Holiday!"</span>);
+} <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (day == <span class="hljs-string">"Saturday"</span>) {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Holiday!"</span>);
+} <span class="hljs-keyword">else</span> {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Working Day"</span>);
+}
+</div></code></pre>
+	<p>You can have multiple <code>else if</code> statements to specify multiple conditions, example-</p>
+	<pre class="hljs"><code><div><span class="hljs-keyword">if</span> (day == <span class="hljs-string">"Sunday"</span>) {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Holiday!"</span>);
+} <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (day == <span class="hljs-string">"Saturday"</span>) {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Holiday!"</span>);
+} <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (day == <span class="hljs-string">"Independence Day"</span>) {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Holiday!"</span>);
+} <span class="hljs-keyword">else</span> {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Working Day"</span>);
+}
+</div></code></pre>
+	<p>Multiple conditions can be chained together using boolean operators <code>&amp;&amp;</code> (Boolean AND), and <code>||</code> (Boolean OR), example-</p>
+	<pre class="hljs"><code><div><span class="hljs-keyword">if</span> (day == <span class="hljs-string">"Sunday"</span> || day == <span class="hljs-string">"Saturday"</span> || day == <span class="hljs-string">"Independence Day"</span>) {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Holiday!"</span>);
+} <span class="hljs-keyword">else</span> {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Working Day"</span>);
+}
+</div></code></pre>
+	<pre class="hljs"><code><div><span class="hljs-keyword">if</span> (mood == <span class="hljs-string">"happy"</span> &amp;&amp; day == <span class="hljs-string">"Sunday"</span>) {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"No work, only fun! :)"</span>);
+} <span class="hljs-keyword">else</span> {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Sad life :("</span>);
+}
+</div></code></pre>
+	<h3 id="switch-statement"><code>switch</code> statement</h3>
+	<p>The <code>switch</code> statement is used to perform different actions based on different conditions. It is similar to <code>if else</code>.</p>
+	<p>When you have a large <code>if else</code> code like below, it becomes difficult to manage it-</p>
+	<pre class="hljs"><code><div><span class="hljs-keyword">if</span> (day == <span class="hljs-string">"Monday"</span>) {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Work"</span>);
+} <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (day == <span class="hljs-string">"Tuesday"</span>) {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Work"</span>);
+} <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (day == <span class="hljs-string">"Wednesday"</span>) {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Work"</span>);
+} <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (day == <span class="hljs-string">"Thursday"</span>) {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Work"</span>);
+} <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (day == <span class="hljs-string">"Friday"</span>) {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Work"</span>);
+} <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (day == <span class="hljs-string">"Saturday"</span>) {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Chill"</span>);
+} <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (day == <span class="hljs-string">"Sunday"</span>) {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Chill"</span>);
+} <span class="hljs-keyword">else</span> {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"The day is wrong"</span>);
+}
+</div></code></pre>
+	<p>We use a <code>switch</code> statement in such scenarios-</p>
+	<pre class="hljs"><code><div><span class="hljs-keyword">switch</span> (day) {
+  <span class="hljs-keyword">case</span> <span class="hljs-string">"Monday"</span>:
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Work"</span>);
+    <span class="hljs-keyword">break</span>;
+  <span class="hljs-keyword">case</span> <span class="hljs-string">"Tuesday"</span>:
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Work"</span>);
+    <span class="hljs-keyword">break</span>;
+  <span class="hljs-keyword">case</span> <span class="hljs-string">"Wednesday"</span>:
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Work"</span>);
+    <span class="hljs-keyword">break</span>;
+  <span class="hljs-keyword">case</span> <span class="hljs-string">"Thursday"</span>:
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Work"</span>);
+    <span class="hljs-keyword">break</span>;
+  <span class="hljs-keyword">case</span> <span class="hljs-string">"Friday"</span>:
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Work"</span>);
+    <span class="hljs-keyword">break</span>;
+  <span class="hljs-keyword">case</span> <span class="hljs-string">"Saturday"</span>:
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Chill"</span>);
+    <span class="hljs-keyword">break</span>;
+  <span class="hljs-keyword">case</span> <span class="hljs-string">"Sunday"</span>:
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Chill"</span>);
+    <span class="hljs-keyword">break</span>;
+  <span class="hljs-keyword">default</span>:
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"The day is wrong"</span>);
+}
+</div></code></pre>
+	<p>Note: If you don't specify the <code>break</code> keyword, JavaScript will keep comparing all the <code>cases</code> till the end. By specifying <code>break</code> we are
+		exiting the <code>switch</code> code block as soon as one condition matches.
+		Note: The <code>default</code> keyword specifies the code to run if there is no case match, it is like the <code>else</code> statement.</p>
+	<h2 id="7-loops">7. Loops</h2>
+	<p>Loops execute a block of code a specified number of times. Loops are used, if you want to run the same code again and again, each time with a same or different value.</p>
+	<h3 id="the-for-loop">The <code>for</code> loop</h3>
+	<p>Syntax-</p>
+	<pre class="hljs"><code><div><span class="hljs-keyword">for</span> (initial; condition; operation) {
+  <span class="hljs-comment">// code block to be executed</span>
+}
+</div></code></pre>
+	<p>The <code>for</code> loop has three constructs-</p>
+	<ol>
+		<li>initial - The <code>for</code> loop starts with this initial value.</li>
+		<li>condition - The <code>for</code> loop checks this condition at every loop/run/iteration.</li>
+		<li>operation - At the end of every single loop it performs this operation.</li>
+	</ol>
+	<p>Example-</p>
+	<pre class="hljs"><code><div><span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">3</span>; i++) {
+  <span class="hljs-built_in">console</span>.log(i);
+}
+</div></code></pre>
+	<p>The above for loop has these three constructs-</p>
+	<ul>
+		<li>initial - It starts with a variable <code>i</code> having value <code>0</code></li>
+		<li>condition - At every iteration it checks if the value of <code>i</code> is less than <code>3</code></li>
+		<li>operation - After every iteration it increments (increases) the value of <code>i</code> by <code>1</code></li>
+	</ul>
+	<h4 id="using-for-loop-to-access-all-the-elements-of-an-array">Using <code>for</code> loop to access all the elements of an array</h4>
+	<p>You can access all the elements of an array manually like this-</p>
+	<pre class="hljs"><code><div><span class="hljs-keyword">var</span> animals = [<span class="hljs-string">"Tiger"</span>, <span class="hljs-string">"Lion"</span>, <span class="hljs-string">"Zebra"</span>];
+animals[<span class="hljs-number">0</span>];
+animals[<span class="hljs-number">1</span>];
+animals[<span class="hljs-number">2</span>];
+</div></code></pre>
+	<p>But this way it is very hectic, imagine if the array has hundreds, thousands, or millions of elements.
+		This is where looping shines, you can use <code>for</code> loop to do the same task, example-</p>
+	<pre class="hljs"><code><div><span class="hljs-keyword">var</span> animals = [<span class="hljs-string">"Tiger"</span>, <span class="hljs-string">"Lion"</span>, <span class="hljs-string">"Zebra"</span>];
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; animals.length; i++) {
+  animals[i];
+}
+</div></code></pre>
+	<h2 id="8-functions">8. Functions</h2>
+	<p>A function is a block of code designed to perform a specific task.
+		A function is defined with the <code>function</code> keyword, followed by a name, followed by brackets/parentheses ().</p>
+	<p>The code to be executed, by the function, is placed inside curly brackets: {}</p>
+	<p>Syntax-</p>
+	<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">name</span>(<span class="hljs-params">parameter1, parameter2, parameter3</span>) </span>{
+  <span class="hljs-comment">// code to be executed</span>
+}
+</div></code></pre>
+	<p>Functions are used in two step-</p>
+	<ol>
+		<li>
+			<p>Defining a function-</p>
+			<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">name</span>(<span class="hljs-params">parameter1, parameter2, parameter3</span>) </span>{
+  <span class="hljs-comment">// code to be executed</span>
+}
+</div></code></pre>
+		</li>
+		<li>
+			<p>Calling it</p>
+			<pre class="hljs"><code><div>name(argument1, argument2, argument3);
+</div></code></pre>
+		</li>
+	</ol>
+	<p>Example-</p>
+	<pre class="hljs"><code><div><span class="hljs-comment">// We first define the function.</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span>(<span class="hljs-params">a, b</span>) </span>{
+  <span class="hljs-keyword">var</span> result = a + b;
+  <span class="hljs-keyword">return</span> result;
+}
+</div></code></pre>
+	<pre class="hljs"><code><div><span class="hljs-comment">// Calling the function.</span>
+add(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>); <span class="hljs-comment">// Output: 3</span>
+</div></code></pre>
+	<p><em>Note</em>: You must <strong>define</strong> a function <strong>before</strong> <strong>using</strong> it.</p>
+	<h3 id="function-parameters--arguments">Function Parameters &amp; Arguments</h3>
+	<h4 id="parameters"><strong>Parameters</strong></h4>
+	<p>When you define a function, you specify the parameters that the function will accept as input-</p>
+	<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">double</span>(<span class="hljs-params">n</span>) </span>{
+  <span class="hljs-keyword">var</span> result = n * <span class="hljs-number">2</span>;
+  <span class="hljs-keyword">return</span> result;
+}
+</div></code></pre>
+	<p>In the above <code>double()</code> function, the variable <code>n</code> is an input parameter, you can specify as many input parameters as required in the function
+		definition seperated by a comma, example-</p>
+	<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">name</span>(<span class="hljs-params">parameter1, parameter2, parameter3</span>) </span>{
+  <span class="hljs-comment">// code to be executed</span>
+}
+</div></code></pre>
+	<p>If you don't require any parameters you shouldn't specify any parameter in the function definition-</p>
+	<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">name</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-comment">// code to be executed</span>
+}
+</div></code></pre>
+	<h4 id="arguments"><strong>Arguments</strong></h4>
+	<p>Arguments are the actual values passed to the function while calling it, example-</p>
+	<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">multiply</span>(<span class="hljs-params">a, b</span>) </span>{
+  <span class="hljs-keyword">var</span> result = a * b;
+  <span class="hljs-keyword">return</span> result;
+}
+
+multiply(<span class="hljs-number">2</span>, <span class="hljs-number">5</span>);
+</div></code></pre>
+	<p>Here, in the function <strong>definition</strong> the variables <code>a</code> and <code>b</code> are <strong>parameters</strong>.<br>
+		Whereas while calling the function we <strong>pass</strong> the actual values <code>2</code> and <code>5</code>, and these are <strong>arguments</strong>.<br>
+		So, the parameters <code>a</code> and <code>b</code>, receive the arguments <code>2</code> and <code>5</code>.</p>
+	<p><strong>Note: Difference between parameters and arguments-</strong><br>
+		Function parameters are the names listed in the function's definition.<br>
+		Function arguments are the real values passed to the function while calling it.</p>
+	<h4 id="return-value-of-a-function"><strong>Return</strong> value of a function</h4>
+	<p>When JavaScript reaches a <code>return</code> statement, the function will <strong>stop</strong> executing and <em>return</em> immediately.</p>
+	<p>If the function was invoked from a statement, JavaScript will <em>return</em> to execute the code after the invoking statement.</p>
+	<p>Functions return their output through a <code>return</code> value. The return value is &quot;returned&quot; back to the &quot;caller&quot; of the function, example-</p>
+	<pre class="hljs"><code><div><span class="hljs-comment">// This function accepts two parameters (inputs) a and b.</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">multiply</span>(<span class="hljs-params">a, b</span>) </span>{
+  <span class="hljs-keyword">var</span> result = a * b;
+  <span class="hljs-keyword">return</span> result; <span class="hljs-comment">// This function returns (output) the product of a and b.</span>
+}
+
+<span class="hljs-keyword">var</span> x = multiply(<span class="hljs-number">2</span>, <span class="hljs-number">4</span>); <span class="hljs-comment">// The function is called from here, so the return value (output) will be stored in x.</span>
+</div></code></pre>
+	<!--
+## 6. Objects
+
+You have many things around you - Car, Book, Phone, House, Watch, etc.
+Objects in JavaScript are used to represent such real life things (objects).
+Every object has two things-
+
+1. Properties - Properties are the features or qualities of the object
+2. Methods - Methods are the behaviours or the functionalities of the object
+
+Example-
+
+| Object | Properties                          | Methods                           |
+| ------ | ----------------------------------- | --------------------------------- |
+| Car    | Brand, Model, Color, Variant, Price | Start, Drive, Brake, Stop         |
+| Book   | Name, Author, Category, Price       | Open, Turn Page, Bookmark,Close   |
+| Watch  | Brand, Model, Color, Price          | Start Tick, Stop Tick, Play Sound |
+-->
+
+</body>
+
+</html>
